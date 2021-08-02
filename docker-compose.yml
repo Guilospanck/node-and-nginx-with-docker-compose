@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+    api:
+        container_name: api
+        restart: unless-stopped
+        build:
+            context: ./app
+        ports:
+            - 4444
+        environment:
+            - NODE_ENV=development
+        networks: # Obs.: docker compose already creates a default network. So it isn't needed if you don't want to
+            - api
+        
+    nginx:
+        container_name: nginx
+        restart: unless-stopped
+        build:
+            context: ./nginx
+        ports:
+            - 80:80
+        depends_on:
+            - api
+        networks:
+            - api
+
+networks:
+    api:
+        driver: bridge

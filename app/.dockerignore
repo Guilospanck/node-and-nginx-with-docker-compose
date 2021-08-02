@@ -1,0 +1,10 @@
+node_modules
+dist
+coverage
+newrelic_agent.log
+.husky
+.vscode
+.github
+nodemon.json
+pm2.config.js
+insominia
